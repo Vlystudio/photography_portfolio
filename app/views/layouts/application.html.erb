@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>VL Studio</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <style>
+      /* Basic Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #fff;
+        background-color: #000; /* Matte black background */
+        font-weight: bold;      /* Bold */
+        font-style: italic;     /* Italic */
+      }
+
+      /* Header container */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center; /* Centers the site title horizontally */
+      }
+
+      /* Hamburger icon in the top-left corner */
+      .hamburger {
+        position: absolute;
+        left: 20px;
+        font-size: 1.8rem;
+        cursor: pointer;
+      }
+
+      /* Centered site title */
+      .site-title {
+        font-size: 1.8rem;
+        color: #fff;
+      }
+
+      /* Navigation container */
+      nav {
+        position: absolute;
+        top: 60px;      /* Below the header */
+        left: 0;
+        width: 200px;
+        background: rgba(0, 0, 0, 0.9);
+        display: none;  /* Hidden by default */
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 10px;
+      }
+
+      nav li {
+        margin: 15px 0;
+      }
+
+      nav a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.1rem;
+        transition: color 0.3s ease;
+      }
+
+      nav a:hover {
+        color: #aaa;
+      }
+
+      /* Main content area; add top padding to account for the fixed header */
+      main {
+        padding: 80px 20px 20px;
+      }
+
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .photo {
+        margin: 15px;
+      }
+
+      .photo img {
+        max-width: 100%;
+        display: block;
+        border-radius: 5px;
+        transition: transform 0.3s ease;
+      }
+
+      .photo img:hover {
+        transform: scale(1.05);
+      }
+
+      /* Footer styling */
+      footer {
+        padding: 20px;
+        text-align: center;
+        background: rgba(0,0,0,0.8);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="hamburger" id="hamburgerMenu">
+        &#9776; <!-- hamburger icon -->
+      </div>
+      <div class="site-title">VL Studio</div>
+    </header>
+
+    <!-- Hidden navigation menu -->
+    <nav id="navMenu">
+  <ul>
+    <li><%= link_to 'Home', root_path %></li>
+    <li><%= link_to 'Wildlife', wildlife_path %></li>
+    <li><%= link_to 'Portrait', portrait_path %></li>
+    <li><%= link_to 'Cars', cars_path %></li>
+    <li><%= link_to 'Contact', contact_path %></li>
+   <li><%= link_to 'Sign In', signin_path %></li>
+  </ul>
+</nav>
+    <main>
+      <%= yield %>
+    </main>
+
+    <footer>
+      &copy; <%= Time.now.year %> VL Studio
+    </footer>
+
+    <!-- Inline JavaScript to toggle the nav menu -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        var hamburger = document.getElementById("hamburgerMenu");
+        var navMenu = document.getElementById("navMenu");
+
+        hamburger.addEventListener("click", function() {
+          // Toggle nav menu display
+          if (navMenu.style.display === "block") {
+            navMenu.style.display = "none";
+          } else {
+            navMenu.style.display = "block";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

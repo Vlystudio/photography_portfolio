@@ -1,0 +1,12 @@
+<div class="gallery">
+  <% @photos.each do |photo| %>
+    <% next unless photo.category == 'wildlife' %>
+    <% next unless photo.image.attached? %>
+    <%# If you're skipping blue bmw.jpg, keep this line: %>
+    <% next if photo.image.filename.to_s.downcase == "blue bmw.jpg" %>
+
+    <div class="photo">
+      <%= image_tag url_for(photo.image), alt: photo.title %>
+    </div>
+  <% end %>
+</div>

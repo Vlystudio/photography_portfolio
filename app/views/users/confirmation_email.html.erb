@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Confirm Your Account</title>
+  </head>
+  <body>
+    <h1>Confirm Your Account</h1>
+    <p>Hello <%= @user.first_name %>,</p>
+    <p>Please confirm your account by clicking the link below:</p>
+    <p>
+      <%= link_to "Confirm my account", confirm_user_path(@user, token: @user.confirmation_token) %>
+    </p>
+    <p>If you did not sign up, please ignore this email.</p>
+  </body>
+</html>

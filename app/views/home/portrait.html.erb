@@ -1,0 +1,10 @@
+<div class="gallery">
+  <% @photos.each do |photo| %>
+    <% next unless photo.category == 'portrait' %>
+    <% next unless photo.image.attached? %>
+
+    <div class="photo">
+      <%= image_tag url_for(photo.image), alt: photo.title %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,122 @@
+<div class="contact-page">
+  <!-- Left column: (optional visual content can be added here) -->
+  <div class="contact-left">
+    <!-- Optional: Visual content goes here (e.g., an image or video) -->
+  </div>
+  
+  <!-- Right column: contact form -->
+  <div class="contact-right">
+    <h1>Contact Us</h1>
+   <%= form_with url: contact_path, local: true, html: { class: "contact-form" } do |f| %>
+
+      <div class="form-group">
+        <%= f.label :first_name, "First Name" %>
+        <%= f.text_field :first_name, required: true %>
+      </div>
+      <div class="form-group">
+        <%= f.label :last_name, "Last Name" %>
+        <%= f.text_field :last_name, required: true %>
+      </div>
+      <div class="form-group">
+        <%= f.label :email, "Email" %>
+        <%= f.email_field :email, required: true %>
+      </div>
+      <div class="form-group inquiry-type">
+        <%= f.label :inquiry_type, "Inquiry Type" %><br/>
+        <%= f.radio_button :inquiry_type, "website", id: "inquiry_website" %>
+        <%= f.label :inquiry_type, "Website business inquiry", for: "inquiry_website" %>
+        <%= f.radio_button :inquiry_type, "photography", id: "inquiry_photography" %>
+        <%= f.label :inquiry_type, "Photography business inquiry", for: "inquiry_photography" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :message, "Message, describe the services you are looking for. " %>
+        <%= f.text_area :message, rows: 8, style: "resize: vertical;", required: true %>
+      </div>
+      <div class="form-actions">
+        <%= f.submit "Send Message" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<style>
+  /* Container for the two columns */
+  .contact-page {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 40px;
+    background: #f4f4f4;
+    color: #333;
+  }
+  
+  /* Left column: currently empty; you can add visual content here */
+  .contact-left {
+    flex: 1;
+    margin-right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Right column: contact form styling */
+  .contact-right {
+    flex: 1;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  .contact-right h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    text-align: center;
+  }
+  .contact-form .form-group {
+    margin-bottom: 15px;
+  }
+  .contact-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  .contact-form input[type="text"],
+  .contact-form input[type="email"],
+  .contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  .contact-form input[type="radio"] {
+    margin-right: 5px;
+  }
+  .form-actions {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .form-actions input[type="submit"] {
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .form-actions input[type="submit"]:hover {
+    background: #555;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .contact-page {
+      flex-direction: column;
+      padding: 20px;
+    }
+    .contact-left, .contact-right {
+      margin: 0 0 20px;
+    }
+  }
+</style>

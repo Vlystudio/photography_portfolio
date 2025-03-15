@@ -1,0 +1,6 @@
+Hello <%= @user.first_name %>,
+
+Thank you for signing up! Please confirm your account by clicking the link below:
+<%= confirm_user_url(@user, token: @user.confirmation_token) %>
+
+If you did not sign up, please ignore this email.

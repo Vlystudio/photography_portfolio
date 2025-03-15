@@ -1,0 +1,12 @@
+<!-- Optional heading (if you want to display one, otherwise it's commented out) -->
+<!-- <h2>Car Photography</h2> -->
+
+<div class="gallery">
+  <% @photos.each do |photo| %>
+    <% next unless photo.category == 'car' %>
+    <% next unless photo.image.attached? %>
+    <div class="photo">
+      <%= image_tag url_for(photo.image), alt: photo.title, width: 300 %>
+    </div>
+  <% end %>
+</div>

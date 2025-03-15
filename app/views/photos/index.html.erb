@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<div class="gallery">
+  <% @photos.each do |photo| %>
+    <%# 1) Skip if no image is attached %>
+    <% next unless photo.image.attached? %>
+
+    <%# 2) Skip if the image filename is "blue bmw.jpg" (case-insensitive) %>
+    <% next if photo.image.filename.to_s.downcase == "blue bmw.jpg" %>
+
+    <div class="photo">
+      <%= image_tag url_for(photo.image), alt: photo.title %>
+    </div>
+  <% end %>
+</div>

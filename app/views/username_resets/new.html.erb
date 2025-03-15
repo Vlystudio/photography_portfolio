@@ -1,0 +1,71 @@
+<div class="reset-container">
+  <h1>Reset Your Username</h1>
+  <%= form_with url: username_resets_path, local: true do |f| %>
+    <div class="field">
+      <%= f.label :email, "Email" %>
+      <%= f.email_field :email, placeholder: "Enter your email", required: true %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Send Reset Instructions" %>
+    </div>
+  <% end %>
+</div>
+
+<style>
+  .reset-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 40px;
+    background: #111111;   /* HEX #111111 or RGB(17,17,17) */
+    border-radius: 10px;
+    text-align: center;
+    color: #fff;           /* White text */
+  }
+
+  .reset-container h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #fff;
+  }
+
+  .field {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+
+  .reset-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #fff;          /* White text */
+  }
+
+  .reset-container input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #000;          /* Black text inside the input for readability */
+    background: #fff;     /* White input background */
+  }
+
+  .actions {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .reset-container input[type="submit"] {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .reset-container input[type="submit"]:hover {
+    background: #ccc;
+  }
+</style>

@@ -1,0 +1,14 @@
+/* app/assets/stylesheets/gallery.css */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.photo {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  width: 320px;
+  text-align: center;
+}

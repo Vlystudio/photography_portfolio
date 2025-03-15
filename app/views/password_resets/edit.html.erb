@@ -1,0 +1,51 @@
+<div class="password-reset-container">
+  <h1>Set a New Password</h1>
+  <%= form_with model: @user, url: password_reset_path(token: params[:token]), local: true do |f| %>
+    <div class="field">
+      <%= f.label :password %>
+      <%= f.password_field :password, placeholder: "New Password" %>
+    </div>
+    <div class="field">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, placeholder: "Confirm New Password" %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Update Password" %>
+    </div>
+  <% end %>
+</div>
+
+<style>
+  .password-reset-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 40px;
+    background: #111;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+  }
+  .password-reset-container h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+  }
+  .password-reset-container .field {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  .password-reset-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  .password-reset-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  .password-reset-container .actions {
+    margin-top: 20px;
+  }
+</style>
