@@ -5,8 +5,15 @@ ruby '3.1.2'
 # Upgrade to Rails 7 – you can choose a patch level as needed
 gem 'rails', '~> 7.0.4'
 
-# Use SQLite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
+group :development, :test do
+  # Use SQLite3 in development and test
+  gem 'sqlite3', '~> 1.4'
+end
+
+group :production do
+  # Use PostgreSQL in production
+  gem 'pg'
+end
 
 # Use bcrypt for secure passwords
 gem 'bcrypt', '~> 3.1.7'
