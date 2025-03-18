@@ -1,4 +1,5 @@
-require 'logger'  
+require 'logger'
+Logger = ::Logger unless defined?(Logger)
 require_relative 'boot'
 require 'rails/all'
 

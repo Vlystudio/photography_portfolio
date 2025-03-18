@@ -4,7 +4,7 @@ ruby '3.1.2'
 
 # Upgrade to Rails 7 – you can choose a patch level as needed
 gem 'rails', '~> 7.0.4'
-
+gem 'importmap-rails'
 group :development, :test do
   # Use SQLite3 in development and test
   gem 'sqlite3', '~> 1.4'

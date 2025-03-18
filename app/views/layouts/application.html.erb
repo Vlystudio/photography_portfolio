@@ -5,8 +5,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= javascript_importmap_tags %>
 
     <style>
       /* Basic Reset */
@@ -112,10 +112,9 @@
       footer {
         padding: 20px;
         text-align: center;
-        background: rgba(0,0,0,0.8);
+        background: rgba(0, 0, 0, 0.8);
       }
     </style>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
   <body>
     <header>
@@ -127,21 +126,21 @@
 
     <!-- Hidden navigation menu -->
     <nav id="navMenu">
-  <ul>
-    <li><%= link_to 'Home', root_path %></li>
-    <li><%= link_to 'Wildlife', wildlife_path %></li>
-    <li><%= link_to 'Portrait', portrait_path %></li>
-    <li><%= link_to 'Cars', cars_path %></li>
-    <li><%= link_to 'Contact', contact_path %></li>
-   <li><%= link_to 'Sign In', signin_path %></li>
-  </ul>
-</nav>
+      <ul>
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Wildlife', wildlife_path %></li>
+        <li><%= link_to 'Portrait', portrait_path %></li>
+        <li><%= link_to 'Cars', cars_path %></li>
+        <li><%= link_to 'Contact', contact_path %></li>
+        <li><%= link_to 'Sign In', signin_path %></li>
+      </ul>
+    </nav>
     <main>
       <%= yield %>
     </main>
 
     <footer>
-      &copy; <%= Time.now.year %> VL Studio
+      &copy; <%= Time.current.year %> VL Studio
     </footer>
 
     <!-- Inline JavaScript to toggle the nav menu -->
@@ -151,12 +150,7 @@
         var navMenu = document.getElementById("navMenu");
 
         hamburger.addEventListener("click", function() {
-          // Toggle nav menu display
-          if (navMenu.style.display === "block") {
-            navMenu.style.display = "none";
-          } else {
-            navMenu.style.display = "block";
-          }
+          navMenu.style.display = (navMenu.style.display === "block") ? "none" : "block";
         });
       });
     </script>
