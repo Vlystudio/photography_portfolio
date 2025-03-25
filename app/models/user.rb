@@ -24,8 +24,13 @@ class User < ApplicationRecord
     end
   end
 
+  # Suggest alternatives by appending random numbers.
   def suggest_alternatives
-    ["#{username}123", "#{username}_1", "#{username}2025"]
+    [
+      "#{username}#{rand(100..999)}",
+      "#{username}_#{rand(10..99)}",
+      "#{username}#{rand(1000..9999)}"
+    ]
   end
 
   # Custom validation for password to include at least one special character
@@ -37,16 +42,23 @@ class User < ApplicationRecord
     end
   end
 
-  # Methods for password reset functionality
-  def generate_reset_token!
-    self.reset_password_token = SecureRandom.urlsafe_base64(20)
-    self.reset_password_token_expires_at = 2.hours.from_now
-    save!
+  # Methods for advanced password reset functionality:
+
+  # Generates a secure token and sets its expiration (24 hours from now).
+  def generate_password_reset_token!
+    update!(
+      reset_password_token: SecureRandom.urlsafe_base64,
+      reset_password_token_expires_at: Time.current + 24.hours
+    )
   end
 
-  def clear_reset_token!
-    self.reset_password_token = nil
-    self.reset_password_token_expires_at = nil
-    save!
+  # Checks if the reset token is still valid (i.e. not expired).
+  def password_reset_token_valid?
+    reset_password_token_expires_at && reset_password_token_expires_at > Time.current
+  end
+
+  # Clears the reset token and its expiration timestamp.
+  def clear_password_reset_token!
+    update!(reset_password_token: nil, reset_password_token_expires_at: nil)
   end
 end

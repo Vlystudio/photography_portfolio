@@ -1,11 +1,12 @@
 class ContactMailer < ApplicationMailer
-  default to: "Valeyardvisuals@gmail.com"
-
   def contact_email(name, email, message)
-    @name = name
+    @name    = name
     @message = message
-    mail(from: email, subject: "New Contact Request from #{@name}") do |format|
-      format.text   # Force Rails to use contact_email.text.erb
-    end
+    @sender  = email
+
+    mail(
+      to:      "valeyardvisuals@gmail.com",  # where you want the email to go
+      subject: "New Contact Request Received"
+    )
   end
 end

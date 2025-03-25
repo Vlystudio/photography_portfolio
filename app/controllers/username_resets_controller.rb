@@ -1,16 +1,18 @@
 class UsernameResetsController < ApplicationController
   def new
-    # Renders the username reset form
+    # Renders a form where the user enters their email.
   end
 
   def create
-    @user = User.find_by(email: params[:email])
+    email = params[:email].to_s.downcase
+    @user = User.find_by(email: email)
+    
     if @user
-      # Send the username reset instructions via email
-      UserMailer.username_reset(@user).deliver_now
-      redirect_to root_path, notice: "Instructions to recover your username have been sent to your email."
+      UsernameMailer.send_username(@user).deliver_now
+      flash[:info] = "An email has been sent with your username information."
+      redirect_to root_path
     else
-      flash.now[:alert] = "Email address not found."
+      flash.now[:danger] = "Email address not found."
       render :new
     end
   end

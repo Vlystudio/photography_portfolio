@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>New Contact Request</title>
-  </head>
   <body>
-    <h1>New Contact Request</h1>
+    <h2>**************************************</h2>
+    <h2> New Contact Request Received </h2>
+    <h2>**************************************</h2>
+
     <p><strong>Name:</strong> <%= @name %></p>
-    <p><strong>Message:</strong></p>
-    <p><%= @message %></p>
+    <p><strong>Email:</strong> <%= @sender %></p>
+    <p><strong>Message:</strong> <%= @message %></p>
+
+    <hr>
+    <p>Sent at: <%= Time.current.strftime("%B %d, %Y %H:%M %p") %></p>
+    <p>This message was sent via the contact form on your website. Please do not reply directly to this email.</p>
   </body>
 </html>

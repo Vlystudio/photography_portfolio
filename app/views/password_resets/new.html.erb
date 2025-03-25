@@ -1,12 +1,12 @@
 <div class="password-reset-container">
-  <h1>Reset Your Password</h1>
+  <h1>Forgot Password</h1>
   <%= form_with url: password_resets_path, local: true do |f| %>
     <div class="field">
-      <%= f.label :email %>
-      <%= f.email_field :email, placeholder: "Enter your email" %>
+      <%= f.label :email, "Enter your email address:" %>
+      <%= f.email_field :email, placeholder: "Enter your email", required: true %>
     </div>
     <div class="actions">
-      <%= f.submit "Send Reset Instructions" %>
+      <%= f.submit "Send Password Reset Email" %>
     </div>
   <% end %>
 </div>

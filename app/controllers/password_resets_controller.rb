@@ -1,12 +1,14 @@
 class PasswordResetsController < ApplicationController
   def new
+    # renders form to submit email for password reset
   end
 
   def create
-    user = User.find_by(email: params[:email])
-    if user
-      user.generate_reset_token!
-      UserMailer.password_reset(user).deliver_now
+    @user = User.find_by(email: params[:email])
+    if @user
+      @user.generate_password_reset_token!
+      # Send email with reset link:
+      UserMailer.password_reset(@user).deliver_now
       redirect_to root_path, notice: "Password reset instructions have been sent to your email."
     else
       flash.now[:alert] = "Email address not found."
@@ -15,29 +17,28 @@ class PasswordResetsController < ApplicationController
   end
 
   def edit
+    # The token comes in as a parameter. Find the user by token.
     @user = User.find_by(reset_password_token: params[:token])
-    unless @user && @user.reset_password_token_expires_at > Time.current
+    unless @user && @user.password_reset_token_valid?
       redirect_to new_password_reset_path, alert: "Password reset link is invalid or has expired."
     end
   end
 
   def update
     @user = User.find_by(reset_password_token: params[:token])
-    if @user && @user.reset_password_token_expires_at > Time.current
-      if @user.update(password_params)
-        @user.clear_reset_token!
-        redirect_to root_path, notice: "Password has been reset."
-      else
-        render :edit
-      end
+    if @user && @user.update(user_params)
+      @user.clear_password_reset_token!
+      redirect_to signin_path, notice: "Your password has been reset successfully."
     else
-      redirect_to new_password_reset_path, alert: "Password reset link is invalid or has expired."
+      flash.now[:alert] = "There was a problem resetting your password."
+      render :edit
     end
   end
 
   private
 
-  def password_params
+  def user_params
+    # Permit only password and password_confirmation parameters.
     params.require(:user).permit(:password, :password_confirmation)
   end
 end

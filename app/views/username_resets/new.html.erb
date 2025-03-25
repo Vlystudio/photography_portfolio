@@ -1,12 +1,12 @@
 <div class="reset-container">
-  <h1>Reset Your Username</h1>
+  <h1>Forgot Username</h1>
   <%= form_with url: username_resets_path, local: true do |f| %>
     <div class="field">
-      <%= f.label :email, "Email" %>
-      <%= f.email_field :email, placeholder: "Enter your email", required: true %>
+      <%= f.label :email, "Enter your email address:" %>
+      <%= f.email_field :email, placeholder: "Email", required: true %>
     </div>
     <div class="actions">
-      <%= f.submit "Send Reset Instructions" %>
+      <%= f.submit "Send Username Email" %>
     </div>
   <% end %>
 </div>
@@ -37,7 +37,7 @@
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #fff;          /* White text */
+    color: #fff;
   }
 
   .reset-container input[type="email"] {
@@ -46,7 +46,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem;
-    color: #000;          /* Black text inside the input for readability */
+    color: #000;          /* Black text inside the input */
     background: #fff;     /* White input background */
   }
 

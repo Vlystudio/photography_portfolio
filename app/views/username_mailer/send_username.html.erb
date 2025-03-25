@@ -1,0 +1,11 @@
+<p>Dear <%= @user.first_name %>,</p>
+
+<p>Your username is: <strong><%= @user.username %></strong></p>
+
+<p>
+  If you did not make this request, please consider changing your password to prevent your account from being compromised.
+</p>
+
+<p>
+  If you have any questions, please <%= link_to "reach out", contact_url %>.
+</p>

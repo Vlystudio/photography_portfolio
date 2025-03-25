@@ -20,17 +20,20 @@ class HomeController < ApplicationController
   end
 
   def contact_submit
-  name = params[:name]
-  email = params[:email]
+  # Combine first and last name, or keep them separate if you like
+  full_name = "#{params[:first_name]} #{params[:last_name]}"
+
+  # Pull out the rest of the params
+  email   = params[:email]
   message = params[:message]
 
-  begin
-    ContactMailer.contact_email(name, email, message).deliver_now
-  rescue EOFError => e
-    Rails.logger.warn "EOFError occurred during email delivery: #{e.message}"
-    # Optionally, you can notify yourself via some logging service if needed.
-  end
+  # Pass these to the mailer
+  ContactMailer.contact_email(full_name, email, message).deliver_now
 
-  redirect_to contact_path, notice: "Your message was sent!"
+  # (Optional) redirect or render something
+  redirect_to root_path, notice: "Your message was sent!"
+  rescue EOFError => e
+  Rails.logger.warn "EOFError occurred during email delivery: #{e.message}"
+  # handle error or redirect with flash
   end
 end

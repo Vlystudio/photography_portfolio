@@ -4,10 +4,16 @@ ruby '3.1.2'
 
 # Upgrade to Rails 7 – you can choose a patch level as needed
 gem 'rails', '~> 7.0.4'
-gem 'importmap-rails'
+
+# Use JSBundling with esbuild
+gem 'jsbundling-rails', '~> 1.3'
+
 group :development, :test do
+  # Load environment variables from .env in development and test
+  gem 'dotenv-rails', groups: [:development, :test]
   # Use SQLite3 in development and test
   gem 'sqlite3', '~> 1.4'
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
 group :production do
@@ -32,16 +38,6 @@ gem 'image_processing', '~> 1.2'
 
 # Speed up boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
-
-# Rails 7 now defaults to importmap-rails (or jsbundling-rails if you prefer a JS bundler)
-# Uncomment one of the following as needed:
-# gem 'importmap-rails'
-# gem 'jsbundling-rails', '~> 1.3'
-
-group :development, :test do
-  # Debugging tool
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-end
 
 group :development do
   # Interactive console on exception pages

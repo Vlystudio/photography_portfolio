@@ -1,16 +1,16 @@
 <div class="password-reset-container">
-  <h1>Set a New Password</h1>
-  <%= form_with model: @user, url: password_reset_path(token: params[:token]), local: true do |f| %>
+  <h1>Reset Password</h1>
+  <%= form_with model: @user, url: password_reset_path(@user.reset_password_token), local: true, method: :patch do |f| %>
     <div class="field">
-      <%= f.label :password %>
-      <%= f.password_field :password, placeholder: "New Password" %>
+      <%= f.label :password, "New Password:" %>
+      <%= f.password_field :password, placeholder: "New Password", required: true %>
     </div>
     <div class="field">
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, placeholder: "Confirm New Password" %>
+      <%= f.label :password_confirmation, "Confirm New Password:" %>
+      <%= f.password_field :password_confirmation, placeholder: "Confirm New Password", required: true %>
     </div>
     <div class="actions">
-      <%= f.submit "Update Password" %>
+      <%= f.submit "Reset Password" %>
     </div>
   <% end %>
 </div>

@@ -6,7 +6,7 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
-    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
 
     <style>
       /* Basic Reset */
@@ -35,7 +35,7 @@
         z-index: 100;
         display: flex;
         align-items: center;
-        justify-content: center; /* Centers the site title horizontally */
+        justify-content: center;
       }
 
       /* Hamburger icon in the top-left corner */
@@ -55,11 +55,11 @@
       /* Navigation container */
       nav {
         position: absolute;
-        top: 60px;      /* Below the header */
+        top: 60px;
         left: 0;
         width: 200px;
         background: rgba(0, 0, 0, 0.9);
-        display: none;  /* Hidden by default */
+        display: none;
       }
 
       nav ul {
@@ -118,9 +118,7 @@
   </head>
   <body>
     <header>
-      <div class="hamburger" id="hamburgerMenu">
-        &#9776; <!-- hamburger icon -->
-      </div>
+      <div class="hamburger" id="hamburgerMenu">&#9776;</div>
       <div class="site-title">VL Studio</div>
     </header>
 
@@ -135,6 +133,7 @@
         <li><%= link_to 'Sign In', signin_path %></li>
       </ul>
     </nav>
+
     <main>
       <%= yield %>
     </main>
@@ -148,7 +147,6 @@
       document.addEventListener("DOMContentLoaded", function() {
         var hamburger = document.getElementById("hamburgerMenu");
         var navMenu = document.getElementById("navMenu");
-
         hamburger.addEventListener("click", function() {
           navMenu.style.display = (navMenu.style.display === "block") ? "none" : "block";
         });
